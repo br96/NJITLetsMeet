@@ -28,6 +28,7 @@ export default function Login( {userID} ) {
                 onFailure={ onFailure }
                 cookiePolicy={ 'single_host_origin' }
                 isSignedIn={ false }
+                hostedDomain="njit.edu"
             />
         </div>
     )
