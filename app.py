@@ -27,7 +27,6 @@ db = flask_sqlalchemy.SQLAlchemy(app)
 db.init_app(app)
 db.app = app
 
-
 @app.route('/')
 def index():
     return flask.render_template('index.html')
