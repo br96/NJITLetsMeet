@@ -39,6 +39,10 @@ def on_connect():
 def on_disconnect():
     print ('Someone disconnected!')
 
+@socketio.on("sending new event")
+def create_event(data):
+    print(data)
+
 if __name__ == '__main__':
     socketio.run(
         app,
