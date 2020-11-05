@@ -17,7 +17,6 @@ load_dotenv(dotenv_path)
 sql_user = os.environ['SQL_USER']
 sql_pwd = os.environ['SQL_PASSWORD']
 
-
 database_uri = os.getenv("DATABASE_URL") # use this for heroku launch
 
 database_uri = "postgresql://{}:{}@localhost/postgres".format(sql_user,sql_pwd) # use this for local testing
@@ -26,6 +25,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = database_uri
 db = flask_sqlalchemy.SQLAlchemy(app)
 db.init_app(app)
 db.app = app
+
+class EventClass(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    location = db.Column(db.String(64))
+
+db.create_all()
+db.session.commit()
 
 @app.route('/')
 def index():

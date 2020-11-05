@@ -1,11 +1,11 @@
-import React from 'react'
+import * as React from 'react';
 
-export default function EventSession() {
+export default function EventSession( {type, location }) {
+
+    console.log("Type: " + type)
     return (
         <div>
-            <p>Event Session</p>
-            <p>Location: </p>
-            <p>Time: </p>
+            <p>{type} {location}</p>
         </div>
     )
 }

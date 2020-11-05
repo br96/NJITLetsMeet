@@ -9,8 +9,8 @@ export function Content() {
     return (
         <div>
             <Login />
-            <EventForm />
             <EventHistory />
+            <EventForm />
         </div>
     );
 }
