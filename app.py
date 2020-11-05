@@ -42,6 +42,9 @@ def on_disconnect():
 @socketio.on("sending new event")
 def create_event(data):
     print(data)
+    socketio.emit("emit all events", {
+        "location": data["location"]
+    })
 
 if __name__ == '__main__':
     socketio.run(
