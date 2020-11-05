@@ -23,6 +23,9 @@ export default function Login( {userID} ) {
         <div className="google-login">
             <GoogleLogin
                 clientId='338963299857-ljp88d5pm444n5g7f18ocek5k0olah9d.apps.googleusercontent.com'
+                render={renderProps => (
+                    <button onClick={renderProps.onClick} disabled={renderProps.disabled}>LOGIN</button>
+                  )}
                 buttonText="Login"
                 onSuccess={ onSuccess }
                 onFailure={ onFailure }
