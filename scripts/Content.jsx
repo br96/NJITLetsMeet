@@ -14,5 +14,5 @@ export function Content() {
             <EventHistory />
             <EventForm />
         </div>
-    );
+    )
 }
