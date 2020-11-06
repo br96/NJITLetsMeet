@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-export default function EventSession( {type, location }) {
+export default function EventSession( {type, location, time }) {
 
     console.log("Type: " + type)
     return (
         <div>
-            <p>{type} {location}</p>
+            <p>{type} {location} {time}</p>
         </div>
     )
 }
