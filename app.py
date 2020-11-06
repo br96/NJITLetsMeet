@@ -28,7 +28,14 @@ db.app = app
 
 class EventClass(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    location = db.Column(db.String(64))
+    eventType = db.Column(db.String(16))
+    eventLocation = db.Column(db.String(64))
+    eventTime = db.Column(db.String(16))
+
+    def __init__(self, eventType, eventLocation, eventTime):
+        self.eventType = eventType
+        self.eventLocation = eventLocation
+        self.eventTime = eventTime
 
 db.create_all()
 db.session.commit()
@@ -51,6 +58,10 @@ def create_event(data):
     socketio.emit("emit all events", {
         "location": data["location"]
     })
+
+    print("DATATYPES: " + str([data["type"], data["location"], data["time"]]))
+    db.session.add(EventClass(data["type"], data["location"], data["time"]))
+    db.session.commit();
 
 if __name__ == '__main__':
     socketio.run(
