@@ -6,7 +6,7 @@ import EventForm from "./EventForm"
 import EventHistory from "./EventHistory"
 // Chris Villamayor
 // Luis Chiang
-// Changjun Lee
+// Changjun Lee.
 export function Content() {
     return (
         <div>
