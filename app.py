@@ -60,6 +60,7 @@ def index():
 @socketio.on('connect')
 def on_connect():
     print("Someone connected")
+    emit_all_events(EVENTS_RECEIVED_CHANNEL)
 
 @socketio.on('disconnect')
 def on_disconnect():
