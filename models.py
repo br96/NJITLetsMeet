@@ -11,7 +11,19 @@ class EventClass(db.Model):
         self.event_location = event_location
         self.event_time = event_time
 
+class User(db.Model):
+    __tablename__ = "users"
 
+    email = db.Column(db.Text, primary_key=True)
+    name = db.Column(db.String(128), nullable=False)
+    bio = db.Column(db.String(1024))
+    profile_picture = db.Column(db.String(256))
+
+    def __init__(self, email, name, bio, profile_picture):
+        self.email = email
+        self.name = name
+        self.bio = bio
+        self.profile_picture = profile_picture
 
 db.create_all()
 db.session.commit()
