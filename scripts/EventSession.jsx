@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ExpandedEvent from './ExpandedEvent';
 
-export default function EventSession({type, location, time }) {
+export default function EventSession({type, location, time, description }) {
     const [toggle, setToggle] = React.useState(false);
 
     function toggleExpandedEvent() {
@@ -16,7 +16,7 @@ export default function EventSession({type, location, time }) {
     return (
         <div>
             <p className="event-session" onClick={toggleExpandedEvent}>{type} {location} {time}</p>
-            {toggle ? <ExpandedEvent type={type} location={location} time={time}/>:null}
+            {toggle ? <ExpandedEvent type={type} location={location} time={time} description={description}/>:null}
         </div>
     )
 }
