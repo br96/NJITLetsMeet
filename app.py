@@ -75,6 +75,12 @@ def create_event(data):
 
     emit_all_events(EVENTS_RECEIVED_CHANNEL)
 
+@socketio.on("clear event history dev")
+def clear_event_history(data):
+    db.session.query(EventClass).delete()
+    print("QUERIED")
+    db.session.commit()
+
 if __name__ == '__main__':
     socketio.run(
         app,
