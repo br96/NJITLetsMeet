@@ -6,6 +6,7 @@ export default function EventHistory() {
     const [eventTypes, setEventTypes] = React.useState([]);
     const [eventLocations, setEventLocations] = React.useState([]);
     const [eventTimes, setEventTimes] = React.useState([]);
+    const [eventDescriptions, setEventDescriptions] = React.useState([]);
 
     function getEventHistory() {
         Socket.on("emit all events", updateEventHistory);
@@ -18,6 +19,7 @@ export default function EventHistory() {
         setEventTypes(data["all_event_types"])
         setEventLocations(data["all_event_locations"])
         setEventTimes(data["all_event_times"])
+        setEventDescriptions(data["all_event_descriptions"])
     }
 
     getEventHistory();
@@ -25,9 +27,7 @@ export default function EventHistory() {
     return (
         <div>
             { eventTypes.map((eventType, index) => (
-                <EventSession key={index} type={ eventType } location={ eventLocations[index]} time={ eventTimes[index]} />
-                // console.log(event.location)
-                // <p>{event.type} {event.location}</p>
+                <EventSession key={index} type={ eventType } location={ eventLocations[index]} time={ eventTimes[index]} description={eventDescriptions[index]} />
             ))}
         </div>
     )
