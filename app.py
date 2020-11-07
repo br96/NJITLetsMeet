@@ -1,11 +1,13 @@
 from os.path import join, dirname
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 import flask
 import flask_sqlalchemy
 import flask_socketio
 import time
 import requests
+from google.oauth2 import id_token
+from google.auth.transport import requests as google_resquests
 
 EVENTS_RECEIVED_CHANNEL = "emit all events"
 
@@ -52,6 +54,29 @@ def on_connect():
 @socketio.on('disconnect')
 def on_disconnect():
     print ('Someone disconnected!')
+
+@socketio.on('google login')
+def on_google_login(data):
+    token = data['token']
+    print("TOKEN IS", token)
+    CLIENT_ID = "163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com"
+    idinfo = None
+    
+    try:
+        idinfo = id_token.verify_oauth2_token(token, google_resquests.Request(), CLIENT_ID)
+    except Exception as e:
+        print(e)
+        return
+
+    if idinfo['aud'] != CLIENT_ID: 
+        print('not for me')
+        return
+
+    email = idinfo['email']
+    name = idinfo['name']
+    profile_picture = idinfo['picture']
+
+    print(email)
 
 @socketio.on("sending new event")
 def create_event(data):

@@ -16,6 +16,10 @@ export default function Login( {userID} ) {
             "name": response.profileObj.email,
         });
 
+        Socket.emit("google login", {
+            token: response.getAuthResponse().id_token
+        });
+
         let profile = response.getBasicProfile();
         User.current = new User(
             profile.getName(), 
