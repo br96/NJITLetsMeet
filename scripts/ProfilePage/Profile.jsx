@@ -7,10 +7,12 @@ export function Profile({ user }) {
     {
         content = (
             <div className="profile-container">
-                <img src={user.profilePicture} alt="Profile Picture"/>
-                <p>Name: {user.name}</p>
-                <p>Email: {user.email}</p>
-                <p>Bio: {user.bio}</p>
+                <div>
+                    <img src={user.profilePicture} alt="Profile Picture"/>
+                    <p>Name: {user.name}</p>
+                    <p>Email: {user.email}</p>
+                    <p>Bio: {user.bio}</p>
+                </div>
             </div>
         );
     }
