@@ -48,6 +48,15 @@
     overflow-y: auto;
 }
 
+button.close-btn
+{
+    background: none;
+    border-style: none;
+    color: #686868;
+    margin: 0.3em;
+    font-size: 1em;
+}
+
 .profile-container > img {
     height: 30%;
 
