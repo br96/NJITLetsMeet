@@ -6,12 +6,16 @@ export function Profile({ user }) {
     if(user !== null) 
     {
         content = (
-            <div className="profile-container">
-                <div>
+            <div className="profile-overlay">
+                <div className="profile-container">
                     <img src={user.profilePicture} alt="Profile Picture"/>
-                    <p>Name: {user.name}</p>
-                    <p>Email: {user.email}</p>
-                    <p>Bio: {user.bio}</p>
+                    <div className="profile-info">
+                        <p>Name: {user.name}</p>
+                        <p>Email: {user.email}</p>
+                        <p><br/></p>
+                        <p>Bio</p>
+                        <div className="profile-bio">{user.bio}</div>
+                    </div>
                 </div>
             </div>
         );
