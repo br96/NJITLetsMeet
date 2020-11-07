@@ -69,7 +69,6 @@ def on_google_login(data):
         return
 
     if idinfo['aud'] != CLIENT_ID: 
-        print('not for me')
         return
 
     email = idinfo['email']
@@ -77,6 +76,24 @@ def on_google_login(data):
     profile_picture = idinfo['picture']
 
     print(email)
+    user = db.session.query(models.User).get(email)
+    if user is None:
+        user = models.User(
+            email=email,
+            name=name,
+            bio="",
+            profile_picture=profile_picture
+        )
+        db.session.add(user)
+        db.session.commit()
+
+    socketio.emit("successful login", {
+        "email": user.email,
+        "name": user.name,
+        "bio": user.bio,
+        "profile_picture": user.profile_picture
+    },
+    room=flask.request.sid)
 
 @socketio.on("sending new event")
 def create_event(data):
