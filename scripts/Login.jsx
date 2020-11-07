@@ -29,6 +29,12 @@ export default function Login( {userID} ) {
         );
     }
 
+    React.useEffect(() => {
+        Socket.on("successful login", (data) => {
+            console.log(data);
+        });
+    }, []);
+
     const onFailure = (response) => {
         console.log('[Login Failed] response:', response);
     }
