@@ -4,6 +4,19 @@
     box-sizing: border-box;
 }
 
-.profile-container {
+.event-session {
+    display: inline-block;
     background-color: red;
+    margin: 2px;
+    padding: 10px;
+}
+
+.event-session:hover {
+    cursor: pointer;
+}
+
+.expanded-event {
+    position: fixed;
+    top: 50%;
+    left: 50%;
 }
