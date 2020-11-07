@@ -58,7 +58,6 @@ def on_disconnect():
 @socketio.on('google login')
 def on_google_login(data):
     token = data['token']
-    print("TOKEN IS", token)
     CLIENT_ID = "163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com"
     idinfo = None
     
@@ -75,7 +74,6 @@ def on_google_login(data):
     name = idinfo['name']
     profile_picture = idinfo['picture']
 
-    print(email)
     user = db.session.query(models.User).get(email)
     if user is None:
         user = models.User(
