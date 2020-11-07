@@ -3,3 +3,4 @@ package-lock.json
 sql.env
 ./static/script.js
 .env
+utils/

@@ -22,7 +22,7 @@ export default function Login( {userID} ) {
     return (
         <div className="google-login">
             <GoogleLogin
-                clientId='338963299857-ljp88d5pm444n5g7f18ocek5k0olah9d.apps.googleusercontent.com'
+                clientId='163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com'
                 render={renderProps => (
                     <button onClick={renderProps.onClick} disabled={renderProps.disabled}>LOGIN</button>
                   )}
