@@ -11,19 +11,19 @@ import EventForm from "./EventForm";
 import EventHistory from "./EventHistory";
 import { User } from "./User";
 import { Profile } from "./ProfilePage/Profile";
+import { ShowButton } from "./ShowButton";
 
 export function Content() {
-    const [showProfile, setShowProfile] = React.useState(false);
-
-    function onShowProfileClick(event)
-    {
-        setShowProfile( (show) => !show );
-        event.preventDefault();
-    }
+    const [showButtonComp, setShowButtonComp] = React.useState(<div/>);
 
     //temporary function to clear the table in EventClass
     function clearEventHistory() {
         Socket.emit("clear event history dev", "");
+    }
+
+    function onShow()
+    {
+        setShowButtonComp(<Profile user={User.current} />);
     }
 
     return (
@@ -32,8 +32,7 @@ export function Content() {
             <Login />
             <EventHistory />
             <EventForm />
-            <button onClick={onShowProfileClick}>Show Profile</button>
-            {showProfile && <Profile user={User.current} />}
+            <ShowButton onClick={onShow} comp={showButtonComp} />
         </div>
     )
 }
