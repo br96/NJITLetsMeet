@@ -4,3 +4,5 @@ sql.env
 ./static/script.js
 .env
 utils/
+.vscode/
+.venv/
