@@ -20,8 +20,14 @@ export function Content() {
         event.preventDefault();
     }
 
+    //temporary function to clear the table in EventClass
+    function clearEventHistory() {
+        Socket.emit("clear event history dev", "");
+    }
+
     return (
         <div>
+            <span><button onClick={clearEventHistory}>Clear Event History from database table</button>Refresh after clicking</span>
             <Login />
             <EventHistory />
             <EventForm />
