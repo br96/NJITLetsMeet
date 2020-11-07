@@ -19,19 +19,16 @@ export default function Login( {userID} ) {
         Socket.emit("google login", {
             token: response.getAuthResponse().id_token
         });
-
-        let profile = response.getBasicProfile();
-        User.current = new User(
-            profile.getName(), 
-            profile.getEmail(), 
-            profile.getImageUrl(),
-            ""
-        );
     }
 
     React.useEffect(() => {
         Socket.on("successful login", (data) => {
-            console.log(data);
+            User.current = new User(
+                data.name,
+                data.email,
+                data.profile_picture,
+                data.bio
+            );
         });
     }, []);
 
