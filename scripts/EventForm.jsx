@@ -3,6 +3,7 @@ import { Socket } from "./Socket"
 
 export default function EventForm() {
 
+
     let eventTypeReference = React.useRef();
     let locationReference = React.useRef();
     let timeReference = React.useRef();
