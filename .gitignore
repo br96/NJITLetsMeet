@@ -6,3 +6,4 @@ static/script.js
 utils/
 .vscode/
 .venv/
+__pycache__/
