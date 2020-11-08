@@ -3,15 +3,10 @@ import { Socket } from './Socket';
 import EventSession from "./EventSession"
 
 export default function EventHistory() {
-    const [events, setEvents] = React.useState([
-        {
-            "type": "Study",
-            "location": "Library"
-        },
-        {
-            "type": "Hangout",
-            "location": "Ramen Gami Rip"
-        }]);
+    const [eventTypes, setEventTypes] = React.useState([]);
+    const [eventLocations, setEventLocations] = React.useState([]);
+    const [eventTimes, setEventTimes] = React.useState([]);
+    const [eventDescriptions, setEventDescriptions] = React.useState([]);
 
     function getEventHistory() {
         Socket.on("emit all events", updateEventHistory);
@@ -21,18 +16,18 @@ export default function EventHistory() {
     }
 
     function updateEventHistory(data) {
-        console.log("Received event " + data["location"])
-        console.log(events);
+        setEventTypes(data["all_event_types"])
+        setEventLocations(data["all_event_locations"])
+        setEventTimes(data["all_event_times"])
+        setEventDescriptions(data["all_event_descriptions"])
     }
 
     getEventHistory();
 
     return (
         <div>
-            { events.map((event, index) => (
-                <EventSession key={index} type={ event.type } location={ event.location } />
-                // console.log(event.location)
-                // <p>{event.type} {event.location}</p>
+            { eventTypes.map((eventType, index) => (
+                <EventSession key={index} type={ eventType } location={ eventLocations[index]} time={ eventTimes[index]} description={eventDescriptions[index]} />
             ))}
         </div>
     )

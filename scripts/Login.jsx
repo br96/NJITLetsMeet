@@ -2,6 +2,8 @@ import React from 'react'
 import { GoogleLogin } from 'react-google-login';
 import { Socket } from "./Socket";
 
+import {User} from "./User";
+
 export default function Login( {userID} ) {
     const onSuccess = (response) => {
         console.log('[Login Sucess] currentUser:', response.profileObj);
@@ -13,6 +15,14 @@ export default function Login( {userID} ) {
             "imgurl": response.profileObj.imageUrl,
             "name": response.profileObj.email,
         });
+
+        let profile = response.getBasicProfile();
+        User.current = new User(
+            profile.getName(), 
+            profile.getEmail(), 
+            profile.getImageUrl(),
+            ""
+        );
     }
 
     const onFailure = (response) => {
@@ -22,7 +32,7 @@ export default function Login( {userID} ) {
     return (
         <div className="google-login">
             <GoogleLogin
-                clientId='338963299857-ljp88d5pm444n5g7f18ocek5k0olah9d.apps.googleusercontent.com'
+                clientId='163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com'
                 render={renderProps => (
                     <button onClick={renderProps.onClick} disabled={renderProps.disabled}>LOGIN</button>
                   )}
