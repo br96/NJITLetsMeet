@@ -26,6 +26,7 @@ export default function Login( {userID} ) {
             profile.getEmail(), 
             profile.getImageUrl(),
         );
+        
     }
 
     React.useEffect(() => {
@@ -46,7 +47,9 @@ export default function Login( {userID} ) {
     return (
         <div className="google-login">
             <GoogleLogin
+            
                 clientId='163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com'
+
                 render={renderProps => (
                     <button onClick={renderProps.onClick} disabled={renderProps.disabled}>LOGIN</button>
                   )}
