@@ -21,7 +21,6 @@ export default function Login( {userID} ) {
             profile.getName(), 
             profile.getEmail(), 
             profile.getImageUrl(),
-            ""
         );
     }
 
