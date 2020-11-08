@@ -53,8 +53,9 @@ def emit_all_events(channel):
         "all_event_times": all_event_times
     })
 
-@app.route('/')
-def index():
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
     return flask.render_template('index.html')
 
 @socketio.on('connect')
