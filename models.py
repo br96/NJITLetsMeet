@@ -5,11 +5,13 @@ class EventClass(db.Model):
     event_type = db.Column(db.String(16))
     event_location = db.Column(db.String(64))
     event_time = db.Column(db.String(16))
+    event_description = db.Column(db.String(300))
 
-    def __init__(self, event_type, event_location, event_time):
+    def __init__(self, event_type, event_location, event_time, event_description):
         self.event_type = event_type
         self.event_location = event_location
         self.event_time = event_time
+        self.event_description = event_description
 
 class User(db.Model):
     __tablename__ = "users"

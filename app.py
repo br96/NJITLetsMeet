@@ -9,6 +9,8 @@ import requests
 from google.oauth2 import id_token
 from google.auth.transport import requests as google_resquests
 
+import models
+
 EVENTS_RECEIVED_CHANNEL = "emit all events"
 
 app = flask.Flask(__name__)
@@ -30,27 +32,11 @@ db = flask_sqlalchemy.SQLAlchemy(app)
 db.init_app(app)
 db.app = app
 
-class EventClass(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    event_type = db.Column(db.String(16))
-    event_location = db.Column(db.String(64))
-    event_time = db.Column(db.String(16))
-    event_description = db.Column(db.String(300))
-
-    def __init__(self, event_type, event_location, event_time, event_description):
-        self.event_type = event_type
-        self.event_location = event_location
-        self.event_time = event_time
-        self.event_description = event_description
-
-db.create_all()
-db.session.commit()
-
 def emit_all_events(channel):
-    all_event_types = [db_event.event_type for db_event in db.session.query(EventClass).all()]
-    all_event_locations = [db_event.event_location for db_event in db.session.query(EventClass).all()]
-    all_event_times = [db_event.event_time for db_event in db.session.query(EventClass).all()]
-    all_event_descriptions = [db_event.event_description for db_event in db.session.query(EventClass).all()]
+    all_event_types = [db_event.event_type for db_event in db.session.query(models.EventClass).all()]
+    all_event_locations = [db_event.event_location for db_event in db.session.query(models.EventClass).all()]
+    all_event_times = [db_event.event_time for db_event in db.session.query(models.EventClass).all()]
+    all_event_descriptions = [db_event.event_description for db_event in db.session.query(models.EventClass).all()]
 
     socketio.emit(channel, {
         "all_event_types": all_event_types,
@@ -114,7 +100,7 @@ def on_google_login(data):
 def create_event(data):
     print(data)
     print("DATATYPES: " + str([data["type"], data["location"], data["time"], data["description"]]))
-    db.session.add(EventClass(data["type"], data["location"], data["time"], data["description"]))
+    db.session.add(models.EventClass(data["type"], data["location"], data["time"], data["description"]))
     db.session.commit();
 
     emit_all_events(EVENTS_RECEIVED_CHANNEL)
