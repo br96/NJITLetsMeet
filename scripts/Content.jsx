@@ -28,7 +28,6 @@ export function Content() {
     return (
         <div>
             <span><button onClick={clearEventHistory}>Clear Event History from database table</button>Refresh after clicking</span>
-            <Login />
             <EventHistory />
             <EventForm />
             <button onClick={() => setShowProfile(!showProfile)}>Show Profile</button>
