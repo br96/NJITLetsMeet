@@ -23,7 +23,7 @@
 }
 
 /* ========================== PROFILE PAGE ======================== */
-.profile-overlay {
+.overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -36,7 +36,7 @@
     justify-content: center;
 }
 
-.profile-overlay > .profile-container {
+.overlay > .profile-container {
     width: 30%;
     height: 70%;
 }
