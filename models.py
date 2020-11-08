@@ -15,8 +15,8 @@ class EventClass(db.Model):
 
 class User(db.Model):
     __tablename__ = "users"
-
-    email = db.Column(db.Text, primary_key=True)
+    
+    email = db.Column(db.String(1000), primary_key=True)
     name = db.Column(db.String(128), nullable=False)
     bio = db.Column(db.String(1024))
     profile_picture = db.Column(db.String(256))
@@ -26,6 +26,7 @@ class User(db.Model):
         self.name = name
         self.bio = bio
         self.profile_picture = profile_picture
+
 
 db.create_all()
 db.session.commit()
