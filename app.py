@@ -85,6 +85,11 @@ def clear_event_history(data):
     db.session.query(EventClass).delete()
     print("QUERIED")
     db.session.commit()
+    
+@socketio.on("oauth to server")
+def on_oauth_to_server(data):
+    
+    emit_all_events(EVENTS_RECEIVED_CHANNEL)
 
 if __name__ == '__main__':
     socketio.run(

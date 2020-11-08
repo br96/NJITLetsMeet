@@ -11,7 +11,7 @@ export function Home() {
             <div>
                 <Switch>
                     <Route path="/" exact component={Login} />
-                    <Route path="/content" component={Content} />
+                    <Route path="/home" component={Content} />
                 </Switch>
             </div>
         </Router>

@@ -26,7 +26,7 @@ export default function Login( {userID} ) {
             ""
         );
         
-        history.push("/content");
+        history.push("/home");
     };
 
     const onFailure = (response) => {
