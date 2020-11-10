@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 export default function Login( {userID} ) {
     const history = useHistory();
-    
+
     const onSuccess = (response) => {
         console.log('[Login Sucess] currentUser:', response.profileObj);
         console.log('[Login Sucess] currentUser:', response.profileObj.email);
@@ -21,14 +21,14 @@ export default function Login( {userID} ) {
         Socket.emit("google login", {
             token: response.getAuthResponse().id_token
         });
-        
+
         let profile = response.getBasicProfile();
         User.current = new User(
-            profile.getName(), 
-            profile.getEmail(), 
+            profile.getName(),
+            profile.getEmail(),
             profile.getImageUrl(),
         );
-        
+
         history.push("/home");
     }
 
@@ -48,21 +48,23 @@ export default function Login( {userID} ) {
     }
 
     return (
-        <div className="google-login">
-            <GoogleLogin
-            
-                clientId='163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com'
-
-                render={renderProps => (
-                    <button onClick={renderProps.onClick} disabled={renderProps.disabled}>LOGIN</button>
-                  )}
-                buttonText="Login"
-                onSuccess={ onSuccess }
-                onFailure={ onFailure }
-                cookiePolicy={ 'single_host_origin' }
-                isSignedIn={ false }
-                hostedDomain="njit.edu"
-            />
+        <div className="google-login-page">
+            <div className="login-container">
+                <img className="highlander" src="https://a4.espncdn.com/combiner/i?img=%2Fi%2Fteamlogos%2Fncaa%2F500%2F2885.png" alt=""/>
+                <GoogleLogin
+                    clientId='163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com'
+                    // clientId='338963299857-ljp88d5pm444n5g7f18ocek5k0olah9d.apps.googleusercontent.com' // Brian's
+                    render={renderProps => (
+                        <button className="login-button" onClick={renderProps.onClick} disabled={renderProps.disabled}>LOGIN</button>
+                    )}
+                    buttonText="Login"
+                    onSuccess={ onSuccess }
+                    onFailure={ onFailure }
+                    cookiePolicy={ 'single_host_origin' }
+                    isSignedIn={ false }
+                    hostedDomain="njit.edu"
+                    />
+            </div>
         </div>
     )
 }

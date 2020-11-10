@@ -25,7 +25,7 @@ export default function EventHistory() {
     getEventHistory();
 
     return (
-        <div>
+        <div className="event-history-container">
             { eventTypes.map((eventType, index) => (
                 <EventSession key={index} type={ eventType } location={ eventLocations[index]} time={ eventTimes[index]} description={eventDescriptions[index]} />
             ))}

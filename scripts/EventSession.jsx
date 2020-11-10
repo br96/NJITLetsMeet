@@ -14,8 +14,12 @@ export default function EventSession({type, location, time, description }) {
     }
 
     return (
-        <div>
-            <p className="event-session" onClick={toggleExpandedEvent}>{type} {location} {time}</p>
+        <div className="event-session-container">
+            <div className="event-session" onClick={toggleExpandedEvent}>
+                <p className="event-type">Type: {type}</p>
+                <p className="event-location">Where: {location} </p>
+                <p className="event-time">When: {time}</p>
+            </div>
             {toggle ? <ExpandedEvent type={type} location={location} time={time} description={description}/>:null}
         </div>
     )

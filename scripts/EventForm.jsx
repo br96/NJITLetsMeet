@@ -29,15 +29,15 @@ export default function EventForm() {
 
     return (
         <div>
-            <form onSubmit={sendNewEvent}>
-                <select name="event-type" ref={ eventTypeReference }>
+            <form className="event-form" onSubmit={sendNewEvent}>
+                <select className="type-select-container" name="event-type" ref={ eventTypeReference }>
                     <option value="Study">Study</option>
                     <option value="Hangout">Hangout</option>
                 </select>
-                <input type="text" placeholder="Enter a location..." ref={ locationReference }/>
-                <input placeholder="12:00 PM" type="time" min="00:00" max="23:59" ref={ timeReference }/>
-                <input placeholder="Description: Limit to 255 characters" type="text" ref={descriptionReference}/>
-                <button type="submit-button">Submit</button>
+                <input className="location-input-container" type="text" placeholder="Enter a location..." ref={ locationReference }/>
+                <input className="time-input-container" placeholder="12:00 PM" type="time" min="00:00" max="23:59" ref={ timeReference }/>
+                <textarea className="text-area-container" placeholder="Description: Limit to 255 characters" type="text" ref={descriptionReference}/>
+                <button className="submit-button" type="submit-button">Submit</button>
             </form>
         </div>
     )

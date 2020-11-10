@@ -2,9 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: blue;
 }
 
-/* ========================== EVENTS ============================= */
 .event-session {
     display: inline-block;
     background-color: red;
@@ -22,7 +22,6 @@
     left: 50%;
 }
 
-/* ========================== PROFILE PAGE ======================== */
 .overlay {
     position: absolute;
     top: 0;

@@ -63,15 +63,17 @@ def on_google_login(data):
     token = data['token']
     CLIENT_ID = "163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com"
     idinfo = None
-    
+
     try:
         idinfo = id_token.verify_oauth2_token(token, google_resquests.Request(), CLIENT_ID)
     except Exception as e:
         print(e)
         return
 
-    if idinfo['aud'] != CLIENT_ID: 
+    if idinfo['aud'] != CLIENT_ID:
         return
+
+    emit_all_events(EVENTS_RECEIVED_CHANNEL)
 
     email = idinfo['email']
     name = idinfo['name']
