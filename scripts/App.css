@@ -2,85 +2,232 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: blue;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.event-session {
-    display: inline-block;
-    background-color: red;
-    margin: 2px;
-    padding: 10px;
+:root {
+    --njit-blue: #2D4059;
+    --njit-gold: goldenrod;
+    --njit-red: #802828;
+    --njit-light-red: #ac4e4e;
+    --njit-dark-red: #421f1f;
+    --njit-meteorite: rgb(40, 40, 50);
+    --njit-black: rgb(15, 15, 18);
+    --njit-white: rgb(200, 200, 210);
 }
 
-.event-session:hover {
-    cursor: pointer;
+.google-login-page {
+    background-image: url("https://i.imgur.com/gWZMoWN.jpg");
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+}
+
+.login-container {
+    display: grid;
+    background-color: var(--njit-blue);
+    border-radius: 20px;
+    border: 1px solid white;
+    width: 300px;
+    padding: 40px;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+}
+
+.highlander {
+    width: 250px;
+    border-radius: 50%;
+    background-color: white;
+    justify-content: center;
+}
+
+.login-button {
+    background-color: white;
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    transition-duration: .25s;
+}
+
+.login-button:hover{
+    background-color: var(--njit-red);
+    transition-duration: .25s;
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.njit-header {
+    position: relative;
+    display: flex;
+    background-color: var(--njit-red);
+    color: var(--njit-white);
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+}
+
+.njit-banner {
+    border-top: 1px solid var(--njit-white);
+    border-bottom: 1px solid var(--njit-white);
+    position: absolute;
+    left: 50px;
+    font-size: 2rem;
+}
+
+.content-container {
+    background-color: var(--njit-black);
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.event-content-container {
+    position: relative;
+    border-radius: 10px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 960px;
+    margin: auto;
+    height: 80vh;
+}
+
+.event-history-container {
+    background-color: var(--njit-dark-red);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow-y: scroll;
+    border: 1px solid var(--njit-black);
+    padding: 20px;
+    border-radius: 10px;
+    height: 90%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.event-session-container {
+    background-color: var(--njit-red);
+    color: var(--njit-white);
+    text-align: center;
+    border: 1px solid var(--njit-light-red);
+    margin: 12px;
+    border-radius: 10px;
+    padding: 20px;
+    height: fit-content;
+    row-gap: 0;
+}
+
+.event-session-container:hover {
+    background-color: var(--njit-light-red);
 }
 
 .expanded-event {
-    position: fixed;
-    top: 50%;
-    left: 50%;
+    display: inline-block;
+    min-width: 50%;
+    border-left: 1px solid var(--njit-black);
+    border-right: 1px solid var(--njit-black);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: .8rem;
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #00000055;
-    width: 100%;
-    height: 100%;
-
+.event-session {
+    padding: 10px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+
 }
 
-.overlay > .profile-container {
-    width: 30%;
-    height: 70%;
+.event-session:hover {
+    padding: 10px;
+    cursor: pointer
+}
+
+.event-form {
+    display: grid;
+    grid-template-columns: 200px 200px 100px auto auto;
+    text-align: center;
+    background-color: var(--njit-dark-red);
+    height: 12%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px;
+    grid-gap: 10px;
+}
+
+.type-select-container, .location-input-container,
+.time-input-container, .text-area-container, .submit-button  {
+    background: var(--njit-red);
+    text-align: center;
+    color: var(--njit-white);
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid var(--njit-light-red);
+    transition-duration: .25s;
+}
+
+.submit-button:hover {
+    transition-duration: .25s;
+    background-color:var(--njit-light-red);
+}
+
+.profile-picture {
+    width: 200px;
+    border-radius: 50%;
+    border: 1px solid var(--njit-black);
 }
 
 .profile-container {
-    background-color: white;
-    border-radius: 5px;
-
-    overflow-y: auto;
+    position: absolute;
+    left: 10%;
+    display: inline-block;
+    z-index: 1;
 }
 
-button.close-btn
-{
-    background: none;
-    border-style: none;
-    color: #686868;
-    margin: 0.3em;
-    font-size: 1em;
-}
-
-.profile-container > img {
-    height: 30%;
-
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
-    margin-bottom: 5%;
-
-    border-radius: 50%;
-    border-color: black;
-    border-style: solid;
-    border-width: 1px;
-}
-
-.profile-container > .profile-info {
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
+.profile-content-container {
+    background-color: var(--njit-red);
+    position: absolute;
+    z-index: 1;
+    border-radius: 10px;
+    padding: 20px;
     justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.profile-bio {
-    margin-left: 1em;
-    margin-right: 1em;
-    max-width: 100%;
+.profile-button {
+    width: 150px;
+    height: 50px;
+    background-color: var(--njit-red);
+    border-radius: 10px;
+    border: 1px solid var(--njit-light-red);
+    transition-duration: .25s;
+    color: var(--njit-white);
+}
+
+.profile-button:hover {
+    background-color: var(--njit-light-red);
+    transition-duration: .25s;
+}
+
+.close-btn {
+    position: absolute;
+    left: 10;
 }

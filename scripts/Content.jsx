@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Socket} from './Socket';
-import "./style.css"
 import Login from "./Login"
 import EventForm from "./EventForm";
 import EventHistory from "./EventHistory";
@@ -8,6 +7,7 @@ import { User } from "./User";
 import { Profile } from "./ProfilePage/Profile";
 import { ProfileOverlay } from "./ProfilePage/ProfileOverlay";
 import NavBar from "./NavBar";
+import "./App.css"
 
 export function Content() {
     const [showProfile, setShowProfile] = React.useState(false);
