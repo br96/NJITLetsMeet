@@ -11,6 +11,7 @@ import EventForm from "./EventForm";
 import EventHistory from "./EventHistory";
 import { User } from "./User";
 import { Profile } from "./ProfilePage/Profile";
+import { ProfileOverlay } from "./ProfilePage/ProfileOverlay";
 
 export function Content() {
     const [showProfile, setShowProfile] = React.useState(false);
@@ -31,7 +32,7 @@ export function Content() {
             <EventHistory />
             <EventForm />
             <button onClick={() => setShowProfile(!showProfile)}>Show Profile</button>
-            {showProfile && <Profile user={User.current} onClose={onProfileClose} />}
+            {showProfile && <ProfileOverlay user={User.current} onClose={onProfileClose} />}
         </div>
     )
 }
