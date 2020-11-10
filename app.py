@@ -33,12 +33,16 @@ db.init_app(app)
 db.app = app
 
 def emit_all_events(channel):
+    all_event_owners = [db_event.event_owner for db_event in db.session.query(models.EventClass).all()]
+    all_event_titles = [db_event.event_title for db_event in db.session.query(models.EventClass).all()]
     all_event_types = [db_event.event_type for db_event in db.session.query(models.EventClass).all()]
     all_event_locations = [db_event.event_location for db_event in db.session.query(models.EventClass).all()]
     all_event_times = [db_event.event_time for db_event in db.session.query(models.EventClass).all()]
     all_event_descriptions = [db_event.event_description for db_event in db.session.query(models.EventClass).all()]
 
     socketio.emit(channel, {
+        "all_event_owners": all_event_owners,
+        "all_event_titles": all_event_titles,
         "all_event_types": all_event_types,
         "all_event_locations": all_event_locations,
         "all_event_times": all_event_times,
@@ -57,6 +61,12 @@ def on_connect():
 @socketio.on('disconnect')
 def on_disconnect():
     print ('Someone disconnected!')
+
+@socketio.on("oauth to server")
+def connect_user_id(data):
+    print(data)
+    socketio.emit(data["socketID"], {
+        "name": data["name"]})
 
 @socketio.on('google login')
 def on_google_login(data):
@@ -102,7 +112,7 @@ def on_google_login(data):
 def create_event(data):
     print(data)
     print("DATATYPES: " + str([data["type"], data["location"], data["time"], data["description"]]))
-    db.session.add(models.EventClass(data["type"], data["location"], data["time"], data["description"]))
+    db.session.add(models.EventClass(data["owner"], data["title"], data["type"], data["location"], data["time"], data["description"]))
     db.session.commit();
 
     emit_all_events(EVENTS_RECEIVED_CHANNEL)

@@ -3,6 +3,8 @@ import { Socket } from './Socket';
 import EventSession from "./EventSession"
 
 export default function EventHistory() {
+    const [eventOwners, setEventOwners] = React.useState([]);
+    const [eventTitles, setEventTitles] = React.useState([]);
     const [eventTypes, setEventTypes] = React.useState([]);
     const [eventLocations, setEventLocations] = React.useState([]);
     const [eventTimes, setEventTimes] = React.useState([]);
@@ -16,6 +18,8 @@ export default function EventHistory() {
     }
 
     function updateEventHistory(data) {
+        setEventOwners(data["all_event_owners"])
+        setEventTitles(data["all_event_titles"])
         setEventTypes(data["all_event_types"])
         setEventLocations(data["all_event_locations"])
         setEventTimes(data["all_event_times"])
@@ -27,7 +31,7 @@ export default function EventHistory() {
     return (
         <div className="event-history-container">
             { eventTypes.map((eventType, index) => (
-                <EventSession key={index} type={ eventType } location={ eventLocations[index]} time={ eventTimes[index]} description={eventDescriptions[index]} />
+                <EventSession key={index} owner={eventOwners[index]} title={eventTitles[index]} type={ eventType } location={ eventLocations[index]} time={ eventTimes[index]} description={eventDescriptions[index]} />
             ))}
         </div>
     )

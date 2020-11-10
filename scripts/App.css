@@ -161,7 +161,7 @@
 
 .event-form {
     display: grid;
-    grid-template-columns: 200px 200px 100px auto auto;
+    grid-template-columns: 150px  150px 150px 100px auto auto;
     text-align: center;
     background-color: var(--njit-dark-red);
     height: 12%;
@@ -172,7 +172,7 @@
 }
 
 .type-select-container, .location-input-container,
-.time-input-container, .text-area-container, .submit-button  {
+.time-input-container, .text-area-container, .submit-button, .title-container  {
     background: var(--njit-red);
     text-align: center;
     color: var(--njit-white);
