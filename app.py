@@ -25,7 +25,7 @@ sql_pwd = os.environ['SQL_PASSWORD']
 
 database_uri = os.getenv("DATABASE_URL") # use this for heroku launch
 
-# database_uri = "postgresql://{}:{}@localhost/postgres".format(sql_user,sql_pwd) # use this for local testing
+database_uri = "postgresql://{}:{}@localhost/postgres".format(sql_user,sql_pwd) # use this for local testing
 app.config['SQLALCHEMY_DATABASE_URI'] = database_uri
 
 db = flask_sqlalchemy.SQLAlchemy(app)
@@ -64,6 +64,8 @@ def on_google_login(data):
     CLIENT_ID = "163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com"
     idinfo = None
 
+    emit_all_events(EVENTS_RECEIVED_CHANNEL)
+
     try:
         idinfo = id_token.verify_oauth2_token(token, google_resquests.Request(), CLIENT_ID)
     except Exception as e:
@@ -72,8 +74,6 @@ def on_google_login(data):
 
     if idinfo['aud'] != CLIENT_ID:
         return
-
-    emit_all_events(EVENTS_RECEIVED_CHANNEL)
 
     email = idinfo['email']
     name = idinfo['name']

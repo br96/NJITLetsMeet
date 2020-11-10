@@ -61,8 +61,8 @@ export default function Login( {userID} ) {
                     onSuccess={ onSuccess }
                     onFailure={ onFailure }
                     cookiePolicy={ 'single_host_origin' }
-                    isSignedIn={ false }
-                    hostedDomain="njit.edu"
+                    isSignedIn={ true }
+                    // hostedDomain="njit.edu"
                     />
             </div>
         </div>
