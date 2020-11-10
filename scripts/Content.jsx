@@ -12,11 +12,6 @@ import "./App.css"
 export function Content() {
     const [showProfile, setShowProfile] = React.useState(false);
 
-    //temporary function to clear the table in EventClass
-    function clearEventHistory() {
-        Socket.emit("clear event history dev", "");
-    }
-
     function onProfileClose()
     {
         setShowProfile(false);
