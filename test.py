@@ -72,8 +72,15 @@ class TestSocketIO(unittest.TestCase):
         ]
 
     def test_connect(self):
+        client1 = socketio.test_client(app.app)
+        client2 = socketio.test_client(app.app)
+        self.assertTrue(client1.is_connected())
+        self.assertTrue(client2.is_connected())
+        self.assertNotEqual(client1.sid, client2.sid)
+        
+    def test_disconnect(self):
         client = socketio.test_client(app.app)
-        self.assertTrue(client.is_connected())
+        client.disconnect()
 
     def test_emit(self):
         socketio_test_client = socketio.test_client(app.app)
