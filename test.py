@@ -29,6 +29,19 @@ class TestApp(unittest.TestCase):
             }
         ]
 
+        self.google_login_mock_args = [
+            {
+                "user": {
+                    "email": "email",
+                    "name": "name",
+                    "bio": "bio",
+                    "profile_picture": "profile_picture",
+                    "token": "token",
+                    "picture": "picture",
+                }
+            }
+        ]
+
     def db_commit_mock(self):
         pass
 
@@ -40,15 +53,34 @@ class TestApp(unittest.TestCase):
             with patch('sqlalchemy.orm.session.Session.commit', self.db_commit_mock):
                 with patch('sqlalchemy.orm.session.Session.query', self.db_query_mock):
                     app.create_event(test["input"])
-                    
-    
+
+    def test_google_login(self):
+        for test in self.google_login_mock_args:
+            with patch('sqlalchemy.orm.session.Session.commit', self.db_commit_mock):
+                with patch('sqlalchemy.orm.session.Session.query', self.db_query_mock):
+                    app.on_google_login(test["user"])
+
 class TestSocketIO(unittest.TestCase):
     def setUp(self):
-        pass
-    
+        self.connect_user_mock = [
+            {
+                "data": {
+                    "socketID": "socketid",
+                    "name": "name"
+                }
+            }
+        ]
+
     def test_connect(self):
         client = socketio.test_client(app.app)
         self.assertTrue(client.is_connected())
+
+    def test_emit(self):
+        socketio_test_client = socketio.test_client(app.app)
+        for test in self.connect_user_mock:
+            app.connect_user_id(test["data"])
+            self.assertTrue(socketio_test_client.is_connected())
+
 
 class LocationResponse:
     def __init__(self, location):

@@ -52,16 +52,10 @@ def index():
 
 @socketio.on('connect')
 def on_connect():
-    print("Someone connected")
     emit_all_events(EVENTS_RECEIVED_CHANNEL)
-
-@socketio.on('disconnect')
-def on_disconnect():
-    print ('Someone disconnected!')
 
 @socketio.on("oauth to server")
 def connect_user_id(data):
-    print(data)
     socketio.emit(data["socketID"], {
         "name": data["name"]})
 
@@ -107,18 +101,10 @@ def on_google_login(data):
 
 @socketio.on("sending new event")
 def create_event(data):
-    print(data)
-    print("DATATYPES: " + str([data["type"], data["location"], data["time"], data["description"]]))
     db.session.add(models.EventClass(data["owner"], data["title"], data["type"], data["location"], data["time"], data["description"]))
     db.session.commit()
 
     emit_all_events(EVENTS_RECEIVED_CHANNEL)
-
-@socketio.on("clear event history dev")
-def clear_event_history():
-    db.session.query(models.EventClass).delete()
-    print("QUERIED")
-    db.session.commit()
 
 if __name__ == '__main__':
     socketio.run(
