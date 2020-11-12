@@ -4,8 +4,6 @@ from dotenv import load_dotenv
 import flask
 import flask_sqlalchemy
 import flask_socketio
-import time
-import requests
 from google.oauth2 import id_token
 from google.auth.transport import requests as google_resquests
 
@@ -112,12 +110,12 @@ def create_event(data):
     print(data)
     print("DATATYPES: " + str([data["type"], data["location"], data["time"], data["description"]]))
     db.session.add(models.EventClass(data["owner"], data["title"], data["type"], data["location"], data["time"], data["description"]))
-    db.session.commit();
+    db.session.commit()
 
     emit_all_events(EVENTS_RECEIVED_CHANNEL)
 
 @socketio.on("clear event history dev")
-def clear_event_history(data):
+def clear_event_history():
     db.session.query(models.EventClass).delete()
     print("QUERIED")
     db.session.commit()
