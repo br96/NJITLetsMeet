@@ -7,3 +7,4 @@ utils/
 .vscode/
 .venv/
 __pycache__/
+htmlcov/

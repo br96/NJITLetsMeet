@@ -1,10 +1,44 @@
 import unittest
+from dotenv import load_dotenv
 from unittest.mock import patch
-import app
+
+def mocked_db_create_all(flaskapp):
+    pass
+
+with patch('flask_sqlalchemy.SQLAlchemy.create_all', mocked_db_create_all):
+    import app
+
+class MockedQuery:
+
+    def all(self):
+        return []
 
 class TestApp(unittest.TestCase):
-    def test_example(self):
+    def setUp(self):
+        self.create_event_mock_args = [
+            {
+                "input": {
+                    "owner": "owner",
+                    "title": "title",
+                    "type": "type",
+                    "location": "location",
+                    "time": "time",
+                    "description": "description"
+                }
+            }
+        ]
+
+    def db_commit_mock(self):
         pass
+
+    def db_query_mock(self, something):
+        return MockedQuery()
+
+    def test_example(self):
+        for test in self.create_event_mock_args:
+            with patch('sqlalchemy.orm.session.Session.commit', self.db_commit_mock):
+                with patch('sqlalchemy.orm.session.Session.query', self.db_query_mock):
+                    app.create_event(test["input"])
 
 class LocationResponse:
     def __init__(self, location):

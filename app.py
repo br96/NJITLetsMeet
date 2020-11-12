@@ -9,8 +9,6 @@ import requests
 from google.oauth2 import id_token
 from google.auth.transport import requests as google_resquests
 
-import models
-
 EVENTS_RECEIVED_CHANNEL = "emit all events"
 
 app = flask.Flask(__name__)
@@ -31,6 +29,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = database_uri
 db = flask_sqlalchemy.SQLAlchemy(app)
 db.init_app(app)
 db.app = app
+import models
 
 def emit_all_events(channel):
     all_event_owners = [db_event.event_owner for db_event in db.session.query(models.EventClass).all()]
