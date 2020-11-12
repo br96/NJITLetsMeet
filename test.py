@@ -1,8 +1,7 @@
 import unittest
 from dotenv import load_dotenv
 from unittest.mock import patch
-from app import socketio, disconnected
-
+from app import socketio
 
 def mocked_db_create_all(flaskapp):
     pass
