@@ -44,19 +44,21 @@ export default function Login({ userID }) {
 
   return (
     <div className="google-login-page">
-      <div className="login-container">
-        <img className="highlander" src="https://a4.espncdn.com/combiner/i?img=%2Fi%2Fteamlogos%2Fncaa%2F500%2F2885.png" alt="" />
-        <GoogleLogin
-          clientId="163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com"
-          render={(renderProps) => (
-            <button className="login-button" type="button" onClick={renderProps.onClick} disabled={renderProps.disabled}>LOGIN</button>
-          )}
-          buttonText="Login"
-          onSuccess={onSuccess}
-          cookiePolicy="single_host_origin"
-          isSignedIn
-          hostedDomain="njit.edu"
-        />
+      <div className="login-page-upper">
+        <div className="login-container">
+          <img className="highlander" src="https://a4.espncdn.com/combiner/i?img=%2Fi%2Fteamlogos%2Fncaa%2F500%2F2885.png" alt="" />
+          <GoogleLogin
+            clientId="163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com"
+            render={(renderProps) => (
+              <button className="login-button" type="button" onClick={renderProps.onClick} disabled={renderProps.disabled}>LOGIN</button>
+            )}
+            buttonText="Login"
+            onSuccess={onSuccess}
+            cookiePolicy="single_host_origin"
+            isSignedIn
+            hostedDomain="njit.edu"
+          />
+        </div>
       </div>
       <Landing />
     </div>

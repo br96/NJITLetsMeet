@@ -18,10 +18,18 @@
 
 .google-login-page {
     background-image: url("https://i.imgur.com/gWZMoWN.jpg");
-    width: 100%;
+    width: 100vw;
+    display: grid;
     justify-content: center;
     align-items: center;
+    text-align: center;
+}
+
+.login-page-upper {
+    height: 100vh;
     display: grid;
+    justify-content: center;
+    align-items: center;
 }
 
 .login-container {
@@ -231,6 +239,33 @@
 }
 
 .landing-container {
-    background-color: red;
-    width: 100%;
+    background-color: var(--njit-black);
+    width: 100vw;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-container {
+    padding: 50px;
+    width: 960px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.app-description {
+    text-align: left;
+    padding: 40px;
+    font-size: 1.25rem;
+    border-right: 1px solid var(--njit-white);
+    color: var(--njit-white);
+}
+
+.team {
+    padding: 40px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--njit-white);
 }
