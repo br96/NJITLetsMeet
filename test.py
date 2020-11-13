@@ -54,11 +54,27 @@ class TestApp(unittest.TestCase):
                 with patch('sqlalchemy.orm.session.Session.query', self.db_query_mock):
                     app.create_event(test["input"])
 
+    def mocked_google_verify_token(self, token, request, client_id):
+        if token == "error": raise Exception()
+        return token
+
+    def mocked_query_get_google_login(self, email):
+        if len(email) <= 0: return None
+        return models.User(
+            email=email,
+            name="a user name",
+            bio="",
+            profile_picture="doesn't matter"
+        )
+
     def test_google_login(self):
         for test in self.google_login_mock_args:
             with patch('sqlalchemy.orm.session.Session.commit', self.db_commit_mock):
                 with patch('sqlalchemy.orm.session.Session.query', self.db_query_mock):
-                    app.on_google_login(test["user"])
+                    with patch('google.oauth2.id_token.verify_oauth2_token', self.mocked_google_verify_token):
+                        with patch('__main__.MockedQuery.get', self.mocked_query_get_google_login):
+                            with patch('flask.request', MockedFlaskRequest):
+                                app.on_google_login(test["input"])
 
 class TestSocketIO(unittest.TestCase):
     def setUp(self):
@@ -87,7 +103,6 @@ class TestSocketIO(unittest.TestCase):
         for test in self.connect_user_mock:
             app.connect_user_id(test["data"])
             self.assertTrue(socketio_test_client.is_connected())
-
 
 class LocationResponse:
     def __init__(self, location):
