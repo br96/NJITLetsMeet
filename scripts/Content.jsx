@@ -1,31 +1,27 @@
 import * as React from 'react';
-import {Socket} from './Socket';
-import Login from "./Login"
-import EventForm from "./EventForm";
-import EventHistory from "./EventHistory";
-import { User } from "./User";
-import { Profile } from "./ProfilePage/Profile";
-import { ProfileOverlay } from "./ProfilePage/ProfileOverlay";
-import NavBar from "./NavBar";
-import "./App.css"
+import EventForm from './EventForm';
+import EventHistory from './EventHistory';
+import { User } from './User';
+import { ProfileOverlay } from './ProfilePage/ProfileOverlay';
+import NavBar from './NavBar';
+import './App.css';
 
 export function Content() {
-    const [showProfile, setShowProfile] = React.useState(false);
+  const [showProfile, setShowProfile] = React.useState(false);
 
-    function onProfileClose()
-    {
-        setShowProfile(false);
-    }
+  function onProfileClose() {
+    setShowProfile(false);
+  }
 
-    return (
-        <div className="content-container">
-            <NavBar />
-            <button className="profile-button" onClick={() => setShowProfile(!showProfile)}>Show Profile</button>
-            {showProfile && <ProfileOverlay user={User.current} onClose={onProfileClose} />}
-            <div className="event-content-container">
-                <EventHistory />
-                <EventForm />
-            </div>
-        </div>
-    )
+  return (
+    <div className="content-container">
+      <NavBar />
+      <button type="button" className="profile-button" onClick={() => setShowProfile(!showProfile)}>Show Profile</button>
+      {showProfile && <ProfileOverlay user={User.current} onClose={onProfileClose} />}
+      <div className="event-content-container">
+        <EventHistory />
+        <EventForm />
+      </div>
+    </div>
+  );
 }
