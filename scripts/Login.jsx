@@ -54,7 +54,6 @@ export default function Login( {userID} ) {
             <div className="login-container">
                 <img className="highlander" src="https://a4.espncdn.com/combiner/i?img=%2Fi%2Fteamlogos%2Fncaa%2F500%2F2885.png" alt=""/>
                 <GoogleLogin
-                    // clientId='163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com'
                     clientId='338963299857-ljp88d5pm444n5g7f18ocek5k0olah9d.apps.googleusercontent.com' // Brian's
                     render={renderProps => (
                         <button className="login-button" onClick={renderProps.onClick} disabled={renderProps.disabled}>LOGIN</button>
