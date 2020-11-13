@@ -34,3 +34,4 @@ class User(db.Model):
 
 db.create_all()
 db.session.commit()
+db.session.close()
