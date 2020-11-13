@@ -5,6 +5,7 @@ import { User } from './User';
 import { ProfileOverlay } from './ProfilePage/ProfileOverlay';
 import NavBar from './NavBar';
 import './App.css';
+import Landing from "./Landing"
 
 export function Content() {
   const [showProfile, setShowProfile] = React.useState(false);

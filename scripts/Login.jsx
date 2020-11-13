@@ -3,7 +3,7 @@ import { GoogleLogin } from 'react-google-login';
 import { useHistory } from 'react-router-dom';
 import { Socket } from './Socket';
 import { User } from './User';
-
+import Landing from "./Landing"
 // eslint-disable-next-line react/prop-types
 export default function Login({ userID }) {
   const history = useHistory();
@@ -58,6 +58,7 @@ export default function Login({ userID }) {
           hostedDomain="njit.edu"
         />
       </div>
+      <Landing />
     </div>
   );
 }
