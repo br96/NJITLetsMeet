@@ -16,8 +16,11 @@ TODO WRITE INFORMATION
 
 # Chris
 **Tasks:**
-**TODO**
-TODO WRITE INFORMATION
+**Front Page with Oauth Button -> Route to Main Page**
+The purpose of this task is to make the login page the landing page. On successful login, route user to the main page where the app is
+
+**Linting**
+Basic linting onto app.py. Include .pylintrc, run `pip install pylint_flask_sqlalchemy` and run `pylint --load-plugins pylint_flask_sqlalchemy app.py`
 
 # Chang
 **Tasks:**
