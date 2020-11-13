@@ -24,5 +24,5 @@ Basic linting onto app.py. Include .pylintrc, run `pip install pylint_flask_sqla
 
 # Chang
 **Tasks:**
-**TODO**
-TODO WRITE INFORMATION
+**Database Table**
+The purpose of this task is to make the login page database information and adding event class database stored in the database Table.
