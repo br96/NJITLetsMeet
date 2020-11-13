@@ -64,7 +64,7 @@ def connect_user_id(data):
 @socketio.on('google login')
 def on_google_login(data):
     token = data['token']
-    CLIENT_ID = "338963299857-ljp88d5pm444n5g7f18ocek5k0olah9d.apps.googleusercontent.com"
+    CLIENT_ID = "163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com"
     idinfo = None
 
     emit_all_events(EVENTS_RECEIVED_CHANNEL)
