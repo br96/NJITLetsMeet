@@ -99,7 +99,7 @@ class TestApp(unittest.TestCase):
             profile_picture="doesn't matter"
         )
 
-    
+
 
     def test_google_login(self):
         for test in self.google_login_mock_args:
@@ -127,7 +127,7 @@ class TestApp(unittest.TestCase):
     #     self.assertTrue(client1.is_connected())
     #     self.assertTrue(client2.is_connected())
     #     self.assertNotEqual(client1.sid, client2.sid)
-        
+
     # def test_disconnect(self):
     #     client = socketio.test_client(app.app)
     #     client.disconnect()
