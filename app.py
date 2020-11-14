@@ -46,8 +46,6 @@ def emit_all_events(channel):
         "all_event_descriptions": all_event_descriptions
     })
 
-    db.session.close()
-
 @app.route('/')
 def index():
     return flask.render_template('index.html')
@@ -92,8 +90,6 @@ def on_google_login(data):
         )
         db.session.add(user)
         db.session.commit()
-        db.session.close()
-    db.session.close()
 
     socketio.emit("successful login", {
         "email": user.email,
@@ -107,7 +103,6 @@ def on_google_login(data):
 def create_event(data):
     db.session.add(models.EventClass(data["owner"], data["title"], data["type"], data["location"], data["time"], data["description"]))
     db.session.commit()
-    db.session.close()
 
     emit_all_events(EVENTS_RECEIVED_CHANNEL)
 
