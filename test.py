@@ -7,12 +7,21 @@ def mocked_db_create_all(flaskapp):
     pass
 
 with patch('flask_sqlalchemy.SQLAlchemy.create_all', mocked_db_create_all):
+    # from app import socketio
     import app
+    import models
 
 class MockedQuery:
-
     def all(self):
         return []
+
+    def get(self, obj_id):
+        return obj_id
+
+class MockedFlaskRequest:
+    sid = 0
+    def __init__(self):
+        self.sid = 0
 
 class TestApp(unittest.TestCase):
     def setUp(self):
@@ -31,13 +40,37 @@ class TestApp(unittest.TestCase):
 
         self.google_login_mock_args = [
             {
-                "user": {
-                    "email": "email",
-                    "name": "name",
-                    "bio": "bio",
-                    "profile_picture": "profile_picture",
-                    "token": "token",
-                    "picture": "picture",
+                "input": {
+                    "token": {
+                        "aud": ""
+                    }
+                }
+            },
+            {
+                "input": {
+                    "token": "error"
+                }
+            },
+            {
+                "input": {
+                    "token": {
+                        # this one hass to be the google client we are using in the server
+                        "aud": "163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com",
+                        "email": "email@gmail.com",
+                        "name": "a user name",
+                        "picture": "doesn't matter"
+                    }
+                }
+            },
+            {
+                "input": {
+                    "token": {
+                        # this one hass to be the google client we are using in the server
+                        "aud": "163716708396-talgj01aee74s8l35iv4opmpac915v0g.apps.googleusercontent.com",
+                        "email": "",
+                        "name": "",
+                        "picture": ""
+                    }
                 }
             }
         ]
@@ -66,6 +99,8 @@ class TestApp(unittest.TestCase):
             bio="",
             profile_picture="doesn't matter"
         )
+
+
 
     def test_google_login(self):
         for test in self.google_login_mock_args:
@@ -103,6 +138,7 @@ class TestSocketIO(unittest.TestCase):
         for test in self.connect_user_mock:
             app.connect_user_id(test["data"])
             self.assertTrue(socketio_test_client.is_connected())
+
 
 class LocationResponse:
     def __init__(self, location):
