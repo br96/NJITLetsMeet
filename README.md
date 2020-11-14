@@ -1,4 +1,4 @@
-# Brian Radon
+# Brian
 **Tasks:**
 **Single Event / Sessions**
 The purpose of this task was to allow a user to broadcast an event publicly with relevant information such as the title, owner, description, time, and location of the event through the use of a Form.  This information was stored in the Event_Class table within the database accordingly.
@@ -11,8 +11,14 @@ This was just a quick mockup in order to get a good idea of how we'll want the a
 
 # Luis
 **Tasks:**
-**TODO**
-TODO WRITE INFORMATION
+**Profile Page**
+The purpose of this task was to allow the client to view a user's information. This works as a view that displays a user's name, email, bio information and profile picture.
+
+**Unit Tests**
+Create unit tests for when a client creates a new event and the second half of when the user tries to log in using google oauth.
+
+**Unique ID per Oauth**
+The purpose of this task was to link a new google oauth login to a unique ID so the user information would persist for each user whenever they logged in with the same email.
 
 # Chris
 **Tasks:**
